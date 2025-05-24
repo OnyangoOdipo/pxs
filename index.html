@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadrack Onyango | Full-Stack Laravel Developer</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Full-stack Laravel Developer specializing in building exceptional digital experiences with PHP, Laravel, and CodeIgniter">
+    <meta name="keywords" content="Laravel, PHP, CodeIgniter, Web Development, Full Stack Developer, School Management System, Medical Systems, Cloud Hosting">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0EA5E9',
+                        secondary: '#0F172A',
+                        'dark-navy': '#020c1b',
+                        'light-navy': '#112240',
+                        'lightest-navy': '#233554',
+                        'navy-shadow': 'rgba(2,12,27,0.7)',
+                        'dark-slate': '#495670',
+                        'slate': '#8892b0',
+                        'light-slate': '#a8b2d1',
+                        'lightest-slate': '#ccd6f6',
+                        'white': '#e6f1ff',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Animation Libraries -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    
+    <style>
+        :root {
+          --primary: #64ffda;
+          --background: #0a192f;
+          --text: #8892b0;
+          --header: #ccd6f6;
+        }
+
+        body {
+          background-color: var(--background);
+          color: var(--text);
+          font-family: 'Calibre', sans-serif;
+        }
+
+        .hero-section {
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .hero-bg {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(45deg, #0a192f 0%, #112240 100%);
+          z-index: -1;
+        }
+
+        .project-card {
+          background: rgba(17, 34, 64, 0.7);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(100, 255, 218, 0.1);
+          transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+          transform: translateY(-10px);
+          border-color: var(--primary);
+        }
+
+        .skill-badge {
+          background: rgba(100, 255, 218, 0.1);
+          color: var(--primary);
+          padding: 0.5rem 1rem;
+          border-radius: 9999px;
+          font-size: 0.875rem;
+          transition: all 0.3s ease;
+        }
+
+        .skill-badge:hover {
+          background: rgba(100, 255, 218, 0.2);
+          transform: translateY(-2px);
+        }
+
+        .nav-link {
+          position: relative;
+          overflow: hidden;
+        }
+
+        .nav-link::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background-color: var(--primary);
+          transform: translateX(-100%);
+          transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+          transform: translateX(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+          width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+          background: var(--background);
+        }
+
+        ::-webkit-scrollbar-thumb {
+          background: var(--primary);
+          border-radius: 4px;
+        }
+
+        /* Loading Animation */
+        .loader {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: var(--secondary);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 9999;
+        }
+
+        .loader-content {
+          width: 50px;
+          height: 50px;
+          border: 3px solid var(--primary);
+          border-top-color: transparent;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+          100% { transform: rotate(360deg); }
+        }
+
+        /* Scroll Animations */
+        .animate-in {
+          opacity: 0;
+          transform: translateY(20px);
+          animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        /* Canvas Container */
+        .canvas-container {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: -1;
+          opacity: 0.5;
+        }
+
+        /* Particles Container */
+        #particles-js {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: -2;
+        }
+
+        @keyframes circle-animation {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes signature-animation {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* Redraw animation on hover */
+        .group:hover svg circle {
+            animation: circle-animation 1s ease-out forwards;
+        }
+
+        .group:hover svg path {
+            animation: signature-animation 1.5s ease-out 0.2s forwards;
+        }
+
+        /* Initial animation state */
+        svg circle, svg path {
+            opacity: 1;
+            stroke-dashoffset: 283;
+        }
+
+        .floating-card {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .glow {
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.3);
+        }
+
+        .glow:hover {
+            box-shadow: 0 0 40px rgba(14, 165, 233, 0.5);
+        }
+    </style>
+</head>
+
+<body class="bg-secondary text-slate antialiased">
+    <!-- Loading Screen -->
+    <div class="loader">
+        <div class="loader-content"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-secondary/90 backdrop-blur-sm border-b border-lightest-navy">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-primary font-mono text-xl font-bold">SO.</a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-8">
+                        <a href="#about" class="text-slate hover:text-primary px-3 py-2 text-sm font-medium transition-colors duration-300">
+                            <span class="text-primary">01.</span> About
+                        </a>
+                        <a href="#experience" class="text-slate hover:text-primary px-3 py-2 text-sm font-medium transition-colors duration-300">
+                            <span class="text-primary">02.</span> Experience
+                        </a>
+                        <a href="#projects" class="text-slate hover:text-primary px-3 py-2 text-sm font-medium transition-colors duration-300">
+                            <span class="text-primary">03.</span> Projects
+                        </a>
+                        <a href="#services" class="text-slate hover:text-primary px-3 py-2 text-sm font-medium transition-colors duration-300">
+                            <span class="text-primary">04.</span> Services
+                        </a>
+                        <a href="#contact" class="text-slate hover:text-primary px-3 py-2 text-sm font-medium transition-colors duration-300">
+                            <span class="text-primary">05.</span> Contact
+                        </a>
+                        <a href="SHADRACK CURRICULUM VITAE.pdf" 
+                           class="border border-primary text-primary px-4 py-2 rounded text-sm font-medium hover:bg-primary/10 transition-colors duration-300"
+                           target="_blank">
+                            Resume
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" class="mobile-menu-button text-slate hover:text-primary">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="mobile-menu hidden md:hidden bg-light-navy/95 backdrop-blur-sm fixed top-16 left-0 w-full border-t border-lightest-navy">
+            <div class="px-4 py-6 space-y-4">
+                <a href="#about" class="text-slate hover:text-primary block px-3 py-2 text-base font-medium">
+                    <span class="text-primary">01.</span> About
+                </a>
+                <a href="#experience" class="text-slate hover:text-primary block px-3 py-2 text-base font-medium">
+                    <span class="text-primary">02.</span> Experience
+                </a>
+                <a href="#projects" class="text-slate hover:text-primary block px-3 py-2 text-base font-medium">
+                    <span class="text-primary">03.</span> Projects
+                </a>
+                <a href="#services" class="text-slate hover:text-primary block px-3 py-2 text-base font-medium">
+                    <span class="text-primary">04.</span> Services
+                </a>
+                <a href="#contact" class="text-slate hover:text-primary block px-3 py-2 text-base font-medium">
+                    <span class="text-primary">05.</span> Contact
+                </a>
+                <div class="pt-4 mt-4 border-t border-lightest-navy">
+                    <a href="SHADRACK CURRICULUM VITAE.pdf" 
+                       class="block text-center border border-primary text-primary px-4 py-2 rounded text-sm font-medium hover:bg-primary/10 transition-colors duration-300"
+                       target="_blank">
+                        Resume
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-left">
+                <h1 class="text-primary font-mono mb-5">Hi, my name is</h1>
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold text-lightest-slate mb-4">
+                    Shadrack Onyango.
+                </h2>
+                <h3 class="text-4xl sm:text-5xl md:text-6xl font-bold text-slate mb-8">
+                    I architect enterprise solutions.
+                </h3>
+                <p class="max-w-2xl text-lg text-slate mb-8">
+                    I'm a senior full-stack developer specializing in Laravel, CodeIgniter, and modern web technologies. 
+                    Currently leading software development at <span class="text-primary">MAAT EA</span>, where I architect 
+                    comprehensive enterprise solutions including school management systems, medical platforms, and cloud infrastructure.
+                </p>
+                <div class="flex flex-wrap gap-4 mb-12">
+                    <span class="skill-badge">Laravel Expert</span>
+                    <span class="skill-badge">CodeIgniter</span>
+                    <span class="skill-badge">Cloud Architecture</span>
+                    <span class="skill-badge">Enterprise Systems</span>
+                </div>
+                <a href="#projects" 
+                   class="inline-block border-2 border-primary text-primary px-8 py-4 rounded text-lg font-medium 
+                          hover:bg-primary/10 transition-colors duration-300 glow">
+                    Explore My Work
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="flex items-center font-mono text-2xl text-lightest-slate mb-12">
+                <span class="text-primary mr-2">01.</span>
+                About Me
+                <div class="ml-4 h-px bg-lightest-navy flex-grow"></div>
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-12">
+                <div class="lg:col-span-3 text-slate">
+                    <p class="mb-4">
+                        Hello! I'm Shadrack, a passionate software architect who thrives on creating robust, scalable enterprise solutions. 
+                        My journey in web development began with curiosity about how complex systems work, and it has evolved into a 
+                        career focused on building comprehensive digital ecosystems.
+                    </p>
+                    
+                    <p class="mb-4">
+                        Currently, I serve as a Software Developer at <span class="text-primary font-semibold">MAAT EA</span>, 
+                        where I lead the development of mission-critical applications. My role encompasses everything from architecting 
+                        complex school management systems with automated timetabling and integrated accounting, to developing sophisticated 
+                        medical management platforms that streamline healthcare operations.
+                    </p>
+                    
+                    <p class="mb-4">
+                        Beyond development, I handle complete project lifecycles including cloud deployment and infrastructure management 
+                        using Nginx. I believe in creating solutions that not only meet immediate needs but scale effectively as 
+                        organizations grow.
+                    </p>
+                    
+                    <p class="mb-8">
+                        My technical expertise spans multiple domains, allowing me to deliver comprehensive solutions:
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="text-lightest-slate font-semibold mb-3">Backend Excellence</h4>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-center">
+                                    <span class="text-primary mr-2">▹</span>
+                                    Laravel (Advanced)
+                                </li>
+                                <li class="flex items-center">
+                                    <span class="text-primary mr-2">▹</span>
+                                    CodeIgniter
+                                </li>
+                                <li class="flex items-center">
+                                    <span class="text-primary mr-2">▹</span>
+                                    PHP (Expert Level)
+                                </li>
+                                <li class="flex items-center">
+                                    <span class="text-primary mr-2">▹</span>
+                                    MySQL Optimization
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-lightest-slate font-semibold mb-3">Infrastructure & DevOps</h4>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-center">
+                                    <span class="text-primary mr-2">▹</span>
+                                    Cloud Deployment
+                                </li>
+                                <li class="flex items-center">
+                                    <span class="text-primary mr-2">▹</span>
+                                    Nginx Configuration
+                                </li>
+                                <li class="flex items-center">
+                                    <span class="text-primary mr-2">▹</span>
+                                    Server Management
+                                </li>
+                                <li class="flex items-center">
+                                    <span class="text-primary mr-2">▹</span>
+                                    Git Version Control
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-2">
+                    <div class="relative group">
+                        <div class="relative z-10 rounded-lg overflow-hidden">
+                            <img src="Shadrack.jpeg" alt="Shadrack Onyango" class="w-full rounded-lg grayscale hover:grayscale-0 transition-all duration-300">
+                        </div>
+                        <div class="absolute inset-0 border-2 border-primary rounded-lg transform translate-x-4 translate-y-4 -z-10 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-300"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="flex items-center font-mono text-2xl text-lightest-slate mb-12">
+                <span class="text-primary mr-2">02.</span>
+                Where I've Worked
+                <div class="ml-4 h-px bg-lightest-navy flex-grow"></div>
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                <!-- Tab List -->
+                <div class="lg:col-span-3">
+                    <div class="flex lg:flex-col overflow-x-auto lg:overflow-x-hidden border-b lg:border-b-0 lg:border-l border-lightest-navy">
+                        <button type="button" data-tab="maat" class="group px-4 py-3 text-sm font-mono border-b-2 lg:border-b-0 lg:border-l-2 border-primary text-primary whitespace-nowrap transition-all duration-300 hover:bg-light-navy/10 focus:outline-none cursor-pointer">
+                            MAAT EA
+                        </button>
+                        <button type="button" data-tab="bch" class="group px-4 py-3 text-sm font-mono border-b-2 lg:border-b-0 lg:border-l-2 border-transparent whitespace-nowrap transition-all duration-300 hover:bg-light-navy/10 hover:text-primary focus:outline-none cursor-pointer">
+                            Bonnie Computer Hub
+                        </button>
+                        <button type="button" data-tab="fairwind" class="group px-4 py-3 text-sm font-mono border-b-2 lg:border-b-0 lg:border-l-2 border-transparent whitespace-nowrap transition-all duration-300 hover:bg-light-navy/10 hover:text-primary focus:outline-none cursor-pointer">
+                            Fairwind Holdings
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tab Panels -->
+                <div class="lg:col-span-9 p-4">
+                    <div id="maat" class="tab-content text-slate">
+                        <h3 class="text-lightest-slate text-xl mb-1">
+                            Software Developer <span class="text-primary">@ MAAT EA</span>
+                        </h3>
+                        <p class="text-sm mb-4 font-mono">Present</p>
+                        <div class="mb-6">
+                            <h4 class="text-primary font-semibold mb-2">Key Responsibilities & Achievements:</h4>
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <span class="text-primary mr-2 mt-1">▹</span>
+                                    <div>
+                                        <strong class="text-lightest-slate">Enterprise System Architecture:</strong> Lead the development and maintenance of all company projects, ensuring scalable and maintainable codebases using Laravel and CodeIgniter frameworks
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-primary mr-2 mt-1">▹</span>
+                                    <div>
+                                        <strong class="text-lightest-slate">School Management System:</strong> Architected a comprehensive platform featuring automated timetabling algorithms, integrated accounting modules, student management, fee tracking, and academic performance analytics
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-primary mr-2 mt-1">▹</span>
+                                    <div>
+                                        <strong class="text-lightest-slate">Medical Management Systems:</strong> Developed sophisticated healthcare platforms with patient management, appointment scheduling, medical records, billing integration, and reporting dashboards
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-primary mr-2 mt-1">▹</span>
+                                    <div>
+                                        <strong class="text-lightest-slate">Cloud Infrastructure & DevOps:</strong> Manage complete deployment pipelines, configure and optimize Nginx servers, implement security protocols, and ensure 99.9% uptime for critical applications
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-primary mr-2 mt-1">▹</span>
+                                    <div>
+                                        <strong class="text-lightest-slate">Performance Optimization:</strong> Implemented caching strategies, database optimization, and code refactoring that improved system performance by 60%
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="text-xs bg-primary/20 text-primary px-2 py-1 rounded">Laravel</span>
+                            <span class="text-xs bg-primary/20 text-primary px-2 py-1 rounded">CodeIgniter</span>
+                            <span class="text-xs bg-primary/20 text-primary px-2 py-1 rounded">PHP</span>
+                            <span class="text-xs bg-primary/20 text-primary px-2 py-1 rounded">MySQL</span>
+                            <span class="text-xs bg-primary/20 text-primary px-2 py-1 rounded">Nginx</span>
+                            <span class="text-xs bg-primary/20 text-primary px-2 py-1 rounded">Cloud Deployment</span>
+                        </div>
+                    </div>
+
+                    <div id="bch" class="tab-content hidden text-slate">
+                        <h3 class="text-lightest-slate text-xl mb-1">
+                            Lead Developer <span class="text-primary">@ BCH</span>
+                        </h3>
+                        <p class="text-sm mb-4 font-mono">January 2024 - January 2025</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="text-primary mr-2 mt-1">▹</span>
+                                Developed a robust Laravel-based LMS platform, providing a user-friendly interface for teachers and students
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-primary mr-2 mt-1">▹</span>
+                                Implemented features for assignment management, quizzes, and progress tracking using Laravel's Eloquent ORM
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-primary mr-2 mt-1">▹</span>
+                                Designed and implemented a system for creating customized assignments and announcements
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-primary mr-2 mt-1">▹</span>
+                                Contributed to the development of real-time progress monitoring and analytics tools
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div id="fairwind" class="tab-content hidden text-slate">
+                        <h3 class="text-lightest-slate text-xl mb-1">
+                            Backend Developer <span class="text-primary">@ Fairwind Holdings</span>
+                        </h3>
+                        <p class="text-sm mb-4 font-mono">August 2024 - October 2024</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="text-primary mr-2 mt-1">▹</span>
+                                Developed and maintained a cryptocurrency trading platform using Laravel and React
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-primary mr-2 mt-1">▹</span>
+                                Implemented real-time market data integration and trading functionality
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-primary mr-2 mt-1">▹</span>
+                                Built secure user authentication and wallet management systems
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-primary mr-2 mt-1">▹</span>
+                                Optimized application performance and implemented responsive design
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="flex items-center font-mono text-2xl text-lightest-slate mb-12">
+                <span class="text-primary mr-2">03.</span>
+                Featured Projects & Solutions
+                <div class="ml-4 h-px bg-lightest-navy flex-grow"></div>
+            </h2>
+
+            <!-- Featured Projects -->
+            <div class="space-y-32">
+                <!-- MAAT EA School Management System -->
+                <div class="relative">
+                    <div class="bg-gradient-to-r from-primary/10 to-transparent p-8 rounded-lg">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-mono mr-4">Current Project</span>
+                            <span class="text-primary font-mono text-sm">Enterprise Solution</span>
+                        </div>
+                        <h3 class="text-3xl font-bold text-lightest-slate mb-4">
+							<h3 class="text-3xl font-bold text-lightest-slate mb-4">
+								MAAT EA School Management System
+							</h3>
+							<p class="text-slate text-lg mb-6">
+								A comprehensive enterprise-grade school management platform featuring automated timetabling, 
+								integrated accounting, student management, and academic analytics. Built with Laravel and 
+								deployed on cloud infrastructure with 99.9% uptime guarantee.
+							</p>
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+								<div>
+									<h4 class="text-primary font-semibold mb-2">Core Features</h4>
+									<ul class="space-y-2 text-sm text-slate">
+										<li>• Automated timetable generation algorithms</li>
+										<li>• Integrated accounting and fee management</li>
+										<li>• Student performance tracking & analytics</li>
+										<li>• Parent portal with real-time updates</li>
+										<li>• Multi-school management capabilities</li>
+									</ul>
+								</div>
+								<div>
+									<h4 class="text-primary font-semibold mb-2">Technical Highlights</h4>
+									<ul class="space-y-2 text-sm text-slate">
+										<li>• Laravel 10 with advanced Eloquent relationships</li>
+										<li>• Redis caching for optimal performance</li>
+										<li>• Queue-based notification system</li>
+										<li>• RESTful API architecture</li>
+										<li>• Cloud deployment with Nginx load balancing</li>
+									</ul>
+								</div>
+							</div>
+							<div class="flex flex-wrap gap-2 mb-6">
+								<span class="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full">Laravel</span>
+								<span class="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full">PHP</span>
+								<span class="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full">MySQL</span>
+								<span class="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full">Redis</span>
+								<span class="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full">JavaScript</span>
+								<span class="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full">Bootstrap</span>
+								<span class="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full">Cloud Hosting</span>
+							</div>
+							<div class="flex gap-4">
+								<a href="https://shule-test.maat-ea.com" class="text-primary hover:text-lightest-slate transition-colors">
+									<i class="fas fa-external-link-alt mr-2"></i>Live Demo
+								</a>
+								<!-- <a href="#" class="text-primary hover:text-lightest-slate transition-colors">
+									<i class="fab fa-github mr-2"></i>Case Study
+								</a> -->
+							</div>
+						</div>
+					</div>
+	
+					<!-- Medical Management System -->
+					<div class="relative">
+						<div class="bg-gradient-to-l from-primary/10 to-transparent p-8 rounded-lg">
+							<div class="flex items-center mb-4">
+								<span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-mono mr-4">Healthcare</span>
+								<span class="text-primary font-mono text-sm">Enterprise Solution</span>
+							</div>
+							<h3 class="text-3xl font-bold text-lightest-slate mb-4">
+								Medical Management Platform
+							</h3>
+							<p class="text-slate text-lg mb-6">
+								A sophisticated healthcare management system streamlining patient care, appointment scheduling, 
+								medical records, and billing operations. Features HIPAA-compliant data handling and real-time 
+								dashboard analytics for healthcare providers.
+							</p>
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+								<div>
+									<h4 class="text-primary font-semibold mb-2">Key Modules</h4>
+									<ul class="space-y-2 text-sm text-slate">
+										<li>• Patient management & medical history</li>
+										<li>• Appointment scheduling system</li>
+										<li>• Electronic health records (EHR)</li>
+										<li>• Billing & insurance processing</li>
+										<li>• Pharmacy integration</li>
+									</ul>
+								</div>
+								<div>
+									<h4 class="text-primary font-semibold mb-2">Advanced Features</h4>
+									<ul class="space-y-2 text-sm text-slate">
+										<li>• HIPAA-compliant security protocols</li>
+										<li>• Real-time reporting dashboards</li>
+										<li>• Multi-location clinic support</li>
+										<li>• SMS/Email notification system</li>
+										<li>• Data analytics & insights</li>
+									</ul>
+								</div>
+							</div>
+							<div class="flex flex-wrap gap-2 mb-6">
+								<span class="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full">CodeIgniter</span>
+								<span class="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full">MySQL</span>
+								<span class="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full">Chart.js</span>
+								<span class="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full">AJAX</span>
+								<span class="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full">Security</span>
+							</div>
+							<!-- <div class="flex gap-4">
+								<a href="" class="text-primary hover:text-lightest-slate transition-colors">
+									<i class="fas fa-external-link-alt mr-2"></i>View Project
+								</a>
+								<a href="#" class="text-primary hover:text-lightest-slate transition-colors">
+									<i class="fas fa-info-circle mr-2"></i>Details
+								</a>
+							</div> -->
+						</div>
+					</div>
+	
+					<!-- Cryptocurrency Trading Platform -->
+					<div class="relative">
+						<div class="bg-gradient-to-r from-primary/10 to-transparent p-8 rounded-lg">
+							<div class="flex items-center mb-4">
+								<span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-mono mr-4">FinTech</span>
+								<span class="text-primary font-mono text-sm">Trading Platform</span>
+							</div>
+							<h3 class="text-3xl font-bold text-lightest-slate mb-4">
+								Cryptocurrency Trading Platform
+							</h3>
+							<p class="text-slate text-lg mb-6">
+								A secure, real-time cryptocurrency trading platform with advanced market analysis tools, 
+								portfolio management, and automated trading features. Built with Laravel backend and 
+								React frontend for optimal user experience.
+							</p>
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+								<div>
+									<h4 class="text-primary font-semibold mb-2">Trading Features</h4>
+									<ul class="space-y-2 text-sm text-slate">
+										<li>• Real-time market data integration</li>
+										<li>• Advanced charting & technical analysis</li>
+										<li>• Portfolio tracking & management</li>
+										<li>• Automated trading algorithms</li>
+										<li>• Multi-exchange connectivity</li>
+									</ul>
+								</div>
+								<div>
+									<h4 class="text-primary font-semibold mb-2">Security & Performance</h4>
+									<ul class="space-y-2 text-sm text-slate">
+										<li>• Two-factor authentication</li>
+										<li>• Cold storage wallet integration</li>
+										<li>• Real-time transaction processing</li>
+										<li>• Risk management tools</li>
+										<li>• Compliance monitoring</li>
+									</ul>
+								</div>
+							</div>
+							<div class="flex flex-wrap gap-2 mb-6">
+								<span class="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full">Next</span>
+								<span class="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full">WebSocket</span>
+								<span class="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full">API Integration</span>
+								<span class="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full">Blockchain</span>
+							</div>
+							<!-- <div class="flex gap-4">
+								<a href="#" class="text-primary hover:text-lightest-slate transition-colors">
+									<i class="fas fa-lock mr-2"></i>Private Demo
+								</a>
+								<a href="#" class="text-primary hover:text-lightest-slate transition-colors">
+									<i class="fas fa-code mr-2"></i>Architecture
+								</a>
+							</div> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	
+		<!-- Services Section -->
+		<section id="services" class="py-20 px-4 sm:px-6 lg:px-8">
+			<div class="max-w-7xl mx-auto">
+				<h2 class="flex items-center font-mono text-2xl text-lightest-slate mb-12">
+					<span class="text-primary mr-2">04.</span>
+					Services & Expertise
+					<div class="ml-4 h-px bg-lightest-navy flex-grow"></div>
+				</h2>
+	
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+					<!-- Enterprise Development -->
+					<div class="bg-light-navy/30 p-8 rounded-lg hover:bg-light-navy/50 transition-all duration-300 glow">
+						<div class="text-primary text-3xl mb-4">
+							<i class="fas fa-building"></i>
+						</div>
+						<h3 class="text-lightest-slate text-xl font-bold mb-4">Enterprise Development</h3>
+						<p class="text-slate mb-4">
+							Full-scale enterprise application development with Laravel and CodeIgniter, 
+							focusing on scalability, security, and performance optimization.
+						</p>
+						<ul class="text-sm text-slate space-y-2">
+							<li>• Custom ERP Solutions</li>
+							<li>• School Management Systems</li>
+							<li>• Medical Management Platforms</li>
+							<li>• E-commerce Solutions</li>
+						</ul>
+					</div>
+	
+					<!-- Cloud Infrastructure -->
+					<div class="bg-light-navy/30 p-8 rounded-lg hover:bg-light-navy/50 transition-all duration-300 glow">
+						<div class="text-primary text-3xl mb-4">
+							<i class="fas fa-cloud"></i>
+						</div>
+						<h3 class="text-lightest-slate text-xl font-bold mb-4">Cloud Infrastructure</h3>
+						<p class="text-slate mb-4">
+							Complete cloud deployment and infrastructure management with optimized server 
+							configurations and high availability setups.
+						</p>
+						<ul class="text-sm text-slate space-y-2">
+							<li>• Server Setup & Configuration</li>
+							<li>• Nginx Load Balancing</li>
+							<li>• Database Optimization</li>
+							<li>• Security Implementation</li>
+						</ul>
+					</div>
+	
+					<!-- API Development -->
+					<div class="bg-light-navy/30 p-8 rounded-lg hover:bg-light-navy/50 transition-all duration-300 glow">
+						<div class="text-primary text-3xl mb-4">
+							<i class="fas fa-code-branch"></i>
+						</div>
+						<h3 class="text-lightest-slate text-xl font-bold mb-4">API Development</h3>
+						<p class="text-slate mb-4">
+							RESTful API development with comprehensive documentation, authentication, 
+							and integration capabilities for seamless third-party connections.
+						</p>
+						<ul class="text-sm text-slate space-y-2">
+							<li>• RESTful API Design</li>
+							<li>• API Authentication</li>
+							<li>• Third-party Integrations</li>
+							<li>• Documentation & Testing</li>
+						</ul>
+					</div>
+	
+					<!-- System Architecture -->
+					<div class="bg-light-navy/30 p-8 rounded-lg hover:bg-light-navy/50 transition-all duration-300 glow">
+						<div class="text-primary text-3xl mb-4">
+							<i class="fas fa-sitemap"></i>
+						</div>
+						<h3 class="text-lightest-slate text-xl font-bold mb-4">System Architecture</h3>
+						<p class="text-slate mb-4">
+							Strategic system design and architecture planning for complex applications 
+							with focus on maintainability and future scalability.
+						</p>
+						<ul class="text-sm text-slate space-y-2">
+							<li>• Database Design</li>
+							<li>• System Architecture Planning</li>
+							<li>• Performance Optimization</li>
+							<li>• Code Review & Refactoring</li>
+						</ul>
+					</div>
+	
+					<!-- Consulting -->
+					<div class="bg-light-navy/30 p-8 rounded-lg hover:bg-light-navy/50 transition-all duration-300 glow">
+						<div class="text-primary text-3xl mb-4">
+							<i class="fas fa-lightbulb"></i>
+						</div>
+						<h3 class="text-lightest-slate text-xl font-bold mb-4">Technical Consulting</h3>
+						<p class="text-slate mb-4">
+							Strategic technology consulting for businesses looking to optimize their 
+							development processes and implement best practices.
+						</p>
+						<ul class="text-sm text-slate space-y-2">
+							<li>• Technology Stack Selection</li>
+							<li>• Code Audit & Review</li>
+							<li>• Performance Analysis</li>
+							<li>• Team Training & Mentoring</li>
+						</ul>
+					</div>
+	
+					<!-- Maintenance & Support -->
+					<div class="bg-light-navy/30 p-8 rounded-lg hover:bg-light-navy/50 transition-all duration-300 glow">
+						<div class="text-primary text-3xl mb-4">
+							<i class="fas fa-tools"></i>
+						</div>
+						<h3 class="text-lightest-slate text-xl font-bold mb-4">Maintenance & Support</h3>
+						<p class="text-slate mb-4">
+							Ongoing maintenance, updates, and technical support for existing applications 
+							with 24/7 monitoring and rapid issue resolution.
+						</p>
+						<ul class="text-sm text-slate space-y-2">
+							<li>• Bug Fixes & Updates</li>
+							<li>• Performance Monitoring</li>
+							<li>• Security Updates</li>
+							<li>• Feature Enhancements</li>
+						</ul>
+					</div>
+				</div>
+	
+				<!-- Process Section -->
+				<div class="mt-20">
+					<h3 class="text-2xl font-bold text-lightest-slate mb-12 text-center">My Development Process</h3>
+					<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+						<div class="text-center">
+							<div class="bg-primary/20 text-primary w-16 h-16 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+								<span class="font-bold">1</span>
+							</div>
+							<h4 class="text-lightest-slate font-bold mb-2">Discovery & Planning</h4>
+							<p class="text-slate text-sm">Understanding requirements and creating detailed project roadmaps</p>
+						</div>
+						<div class="text-center">
+							<div class="bg-primary/20 text-primary w-16 h-16 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+								<span class="font-bold">2</span>
+							</div>
+							<h4 class="text-lightest-slate font-bold mb-2">Architecture & Design</h4>
+							<p class="text-slate text-sm">Designing scalable system architecture and database structures</p>
+						</div>
+						<div class="text-center">
+							<div class="bg-primary/20 text-primary w-16 h-16 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+								<span class="font-bold">3</span>
+							</div>
+							<h4 class="text-lightest-slate font-bold mb-2">Development & Testing</h4>
+							<p class="text-slate text-sm">Agile development with continuous testing and quality assurance</p>
+						</div>
+						<div class="text-center">
+							<div class="bg-primary/20 text-primary w-16 h-16 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+								<span class="font-bold">4</span>
+							</div>
+							<h4 class="text-lightest-slate font-bold mb-2">Deployment & Support</h4>
+							<p class="text-slate text-sm">Cloud deployment with ongoing maintenance and optimization</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	
+		<!-- Contact Section -->
+		<section id="contact" class="py-20 px-4 sm:px-6 lg:px-8">
+			<div class="max-w-4xl mx-auto text-center">
+				<h2 class="flex items-center justify-center font-mono text-2xl text-lightest-slate mb-12">
+					<span class="text-primary mr-2">05.</span>
+					Get In Touch
+				</h2>
+				
+				<h3 class="text-4xl font-bold text-lightest-slate mb-6">Let's Build Something Amazing Together</h3>
+				<p class="text-slate text-lg mb-8 max-w-2xl mx-auto">
+					Whether you need a comprehensive enterprise solution, want to optimize your existing systems, 
+					or are looking for technical consulting, I'm here to help turn your vision into reality. 
+					Let's discuss how we can create exceptional digital experiences together.
+				</p>
+				
+				<a href="https://wa.me/254757963318" 
+				   class="inline-block border-2 border-primary text-primary px-8 py-4 rounded text-lg font-medium 
+						  hover:bg-primary/10 transition-colors duration-300 glow">
+					Start a Conversation
+				</a>
+			</div>
+		</section>
+	
+		<!-- Footer -->
+		<footer class="py-8 px-4 sm:px-6 lg:px-8 border-t border-lightest-navy">
+			<div class="max-w-7xl mx-auto">
+				<div class="flex flex-col md:flex-row justify-between items-center">
+					<div class="text-slate text-sm mb-4 md:mb-0">
+						<p>&copy; 2025 Shadrack Onyango. Crafted with precision and passion.</p>
+					</div>
+					<div class="flex space-x-6">
+						<a href="https://github.com/OnyangoOdipo" class="text-slate hover:text-primary transition-colors">
+							<i class="fab fa-github text-xl"></i>
+						</a>
+						<a href="tel:254757963318" class="text-slate hover:text-primary transition-colors">
+							<i class="fab fa-phone text-xl"></i>
+						</a>
+						<a href="mailto:shadrackonyango30@gmail.com" class="text-slate hover:text-primary transition-colors">
+							<i class="fas fa-envelope text-xl"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</footer>
+	
+		<!-- JavaScript -->
+		<script>
+			// Loading Screen
+			window.addEventListener('load', function() {
+				setTimeout(() => {
+					document.querySelector('.loader').style.display = 'none';
+				}, 1000);
+			});
+	
+			// Mobile Menu Toggle
+			document.querySelector('.mobile-menu-button').addEventListener('click', function() {
+				const menu = document.querySelector('.mobile-menu');
+				menu.classList.toggle('hidden');
+			});
+	
+			// Tab Functionality
+			document.querySelectorAll('[data-tab]').forEach(button => {
+				button.addEventListener('click', function() {
+					const tabId = this.getAttribute('data-tab');
+					
+					// Remove active states
+					document.querySelectorAll('[data-tab]').forEach(btn => {
+						btn.classList.remove('border-primary', 'text-primary');
+						btn.classList.add('border-transparent');
+					});
+					
+					document.querySelectorAll('.tab-content').forEach(content => {
+						content.classList.add('hidden');
+					});
+					
+					// Add active states
+					this.classList.add('border-primary', 'text-primary');
+					this.classList.remove('border-transparent');
+					document.getElementById(tabId).classList.remove('hidden');
+				});
+			});
+	
+			// Smooth Scrolling
+			document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+				anchor.addEventListener('click', function (e) {
+					const href = this.getAttribute('href');
+					if (href === '#') {
+						e.preventDefault();
+						return;
+					}
+					e.preventDefault();
+					const target = document.querySelector(href);
+					if (target) {
+						target.scrollIntoView({
+							behavior: 'smooth',
+							block: 'start'
+						});
+					}
+				});
+			});
+	
+			// Scroll Animations
+			const observerOptions = {
+				threshold: 0.1,
+				rootMargin: '0px 0px -50px 0px'
+			};
+	
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('animate-in');
+					}
+				});
+			}, observerOptions);
+	
+			document.querySelectorAll('section').forEach(section => {
+				observer.observe(section);
+			});
+	
+			// Navbar Background on Scroll
+			window.addEventListener('scroll', function() {
+				const navbar = document.querySelector('nav');
+				if (window.scrollY > 100) {
+					navbar.classList.add('bg-secondary');
+				} else {
+					navbar.classList.remove('bg-secondary');
+				}
+			});
+	
+			// Initialize AOS
+			AOS.init({
+				duration: 800,
+				easing: 'ease-in-out',
+				once: true
+			});
+	
+			// Particles.js Configuration
+			if (typeof particlesJS !== 'undefined') {
+				document.addEventListener('DOMContentLoaded', function() {
+					particlesJS('particles-js', {
+						particles: {
+							number: {
+								value: 80,
+								density: {
+									enable: true,
+									value_area: 800
+								}
+							},
+							color: {
+								value: '#64ffda'
+							},
+							shape: {
+								type: 'circle',
+								stroke: {
+									width: 0,
+									color: '#000000'
+								}
+							},
+							opacity: {
+								value: 0.3,
+								random: false,
+								anim: {
+									enable: false,
+									speed: 1,
+									opacity_min: 0.1,
+									sync: false
+								}
+							},
+							size: {
+								value: 3,
+								random: true,
+								anim: {
+									enable: false,
+									speed: 40,
+									size_min: 0.1,
+									sync: false
+								}
+							},
+							line_linked: {
+								enable: true,
+								distance: 150,
+								color: '#64ffda',
+								opacity: 0.2,
+								width: 1
+							},
+							move: {
+								enable: true,
+								speed: 2,
+								direction: 'none',
+								random: false,
+								straight: false,
+								out_mode: 'out',
+								bounce: false,
+								attract: {
+									enable: false,
+									rotateX: 600,
+									rotateY: 1200
+								}
+							}
+						},
+						interactivity: {
+							detect_on: 'canvas',
+							events: {
+								onhover: {
+									enable: true,
+									mode: 'repulse'
+								},
+								onclick: {
+									enable: true,
+									mode: 'push'
+								},
+								resize: true
+							},
+							modes: {
+								grab: {
+									distance: 400,
+									line_linked: {
+										opacity: 1
+									}
+								},
+								bubble: {
+									distance: 400,
+									size: 40,
+									duration: 2,
+									opacity: 8,
+									speed: 3
+								},
+								repulse: {
+									distance: 200,
+									duration: 0.4
+								},
+								push: {
+									particles_nb: 4
+								},
+								remove: {
+									particles_nb: 2
+								}
+							}
+						},
+						retina_detect: true
+					});
+				});
+			}
+	
+			// Three.js Background Animation
+			if (typeof THREE !== 'undefined') {
+				const scene = new THREE.Scene();
+				const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+				const renderer = new THREE.WebGLRenderer({ alpha: true });
+				
+				renderer.setSize(window.innerWidth, window.innerHeight);
+				renderer.setClearColor(0x000000, 0);
+				
+				// Create canvas container if it doesn't exist
+				let canvasContainer = document.querySelector('.canvas-container');
+				if (!canvasContainer) {
+					canvasContainer = document.createElement('div');
+					canvasContainer.className = 'canvas-container';
+					document.body.appendChild(canvasContainer);
+				}
+				canvasContainer.appendChild(renderer.domElement);
+	
+				// Create floating geometric shapes
+				const geometry = new THREE.BoxGeometry(1, 1, 1);
+				const material = new THREE.MeshBasicMaterial({ 
+					color: 0x64ffda, 
+					wireframe: true,
+					transparent: true,
+					opacity: 0.1
+				});
+	
+				const cubes = [];
+				for (let i = 0; i < 50; i++) {
+					const cube = new THREE.Mesh(geometry, material);
+					cube.position.x = (Math.random() - 0.5) * 20;
+					cube.position.y = (Math.random() - 0.5) * 20;
+					cube.position.z = (Math.random() - 0.5) * 20;
+					cube.rotation.x = Math.random() * 2 * Math.PI;
+					cube.rotation.y = Math.random() * 2 * Math.PI;
+					scene.add(cube);
+					cubes.push(cube);
+				}
+	
+				camera.position.z = 5;
+	
+				function animate() {
+					requestAnimationFrame(animate);
+	
+					cubes.forEach(cube => {
+						cube.rotation.x += 0.005;
+						cube.rotation.y += 0.005;
+						cube.position.y += Math.sin(Date.now() * 0.001 + cube.position.x) * 0.002;
+					});
+	
+					renderer.render(scene, camera);
+				}
+	
+				animate();
+	
+				// Handle window resize
+				window.addEventListener('resize', () => {
+					camera.aspect = window.innerWidth / window.innerHeight;
+					camera.updateProjectionMatrix();
+					renderer.setSize(window.innerWidth, window.innerHeight);
+				});
+			}
+	
+			// Typewriter Effect for Hero Section
+			if (typeof Typed !== 'undefined') {
+				new Typed('#typed-text', {
+					strings: [
+						'I architect enterprise solutions.',
+						'I build scalable web applications.',
+						'I create digital experiences.',
+						'I solve complex problems.'
+					],
+					typeSpeed: 50,
+					backSpeed: 30,
+					backDelay: 2000,
+					startDelay: 1000,
+					loop: true
+				});
+			}
+	
+			// GSAP Animations
+			if (typeof gsap !== 'undefined') {
+				gsap.registerPlugin(ScrollTrigger);
+	
+				// Hero section animation
+				gsap.from('.hero-content > *', {
+					y: 50,
+					opacity: 0,
+					duration: 1,
+					stagger: 0.2,
+					ease: 'power2.out',
+					delay: 1.2
+				});
+	
+				// Section animations
+				gsap.utils.toArray('section').forEach(section => {
+					gsap.from(section.children, {
+						y: 50,
+						opacity: 0,
+						duration: 0.8,
+						stagger: 0.1,
+						scrollTrigger: {
+							trigger: section,
+							start: 'top 80%',
+							end: 'bottom 20%',
+							toggleActions: 'play none none reverse'
+						}
+					});
+				});
+	
+				// Project cards hover animation
+				document.querySelectorAll('.project-card').forEach(card => {
+					card.addEventListener('mouseenter', () => {
+						gsap.to(card, {
+							y: -10,
+							duration: 0.3,
+							ease: 'power2.out'
+						});
+					});
+	
+					card.addEventListener('mouseleave', () => {
+						gsap.to(card, {
+							y: 0,
+							duration: 0.3,
+							ease: 'power2.out'
+						});
+					});
+				});
+			}
+	
+			// Custom cursor effect
+			const cursor = document.createElement('div');
+			cursor.className = 'fixed w-4 h-4 bg-primary rounded-full pointer-events-none z-50 opacity-0 transition-opacity duration-300';
+			document.body.appendChild(cursor);
+	
+			document.addEventListener('mousemove', (e) => {
+				cursor.style.left = e.clientX - 8 + 'px';
+				cursor.style.top = e.clientY - 8 + 'px';
+				cursor.style.opacity = '0.7';
+			});
+	
+			document.addEventListener('mouseleave', () => {
+				cursor.style.opacity = '0';
+			});
+	
+			// Add hover effects to interactive elements
+			document.querySelectorAll('a, button, .project-card').forEach(el => {
+				el.addEventListener('mouseenter', () => {
+					cursor.style.transform = 'scale(2)';
+					cursor.style.opacity = '0.3';
+				});
+	
+				el.addEventListener('mouseleave', () => {
+					cursor.style.transform = 'scale(1)';
+					cursor.style.opacity = '0.7';
+				});
+			});
+	
+			// Parallax effect for background elements
+			window.addEventListener('scroll', () => {
+				const scrolled = window.pageYOffset;
+				const parallaxElements = document.querySelectorAll('.floating-card');
+				
+				parallaxElements.forEach((el, index) => {
+					const speed = 0.5 + (index * 0.1);
+					el.style.transform = `translateY(${scrolled * speed * 0.1}px)`;
+				});
+			});
+	
+			// Add glow effect on scroll
+			const glowElements = document.querySelectorAll('.glow');
+			const glowObserver = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						entry.target.style.boxShadow = '0 0 40px rgba(14, 165, 233, 0.5)';
+					} else {
+						entry.target.style.boxShadow = '0 0 20px rgba(14, 165, 233, 0.3)';
+					}
+				});
+			});
+	
+			glowElements.forEach(el => glowObserver.observe(el));
+	
+			// Progress bar for page scroll
+			const progressBar = document.createElement('div');
+			progressBar.className = 'fixed top-0 left-0 w-0 h-1 bg-primary z-50 transition-all duration-100';
+			document.body.appendChild(progressBar);
+	
+			window.addEventListener('scroll', () => {
+				const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+				progressBar.style.width = scrollPercent + '%';
+			});
+	
+			// Easter egg - Konami code
+			let konamiCode = [];
+			const konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+			
+			document.addEventListener('keydown', (e) => {
+				konamiCode.push(e.keyCode);
+				if (konamiCode.length > konami.length) {
+					konamiCode.shift();
+				}
+				
+				if (konamiCode.join(',') === konami.join(',')) {
+					document.body.style.filter = 'hue-rotate(180deg)';
+					setTimeout(() => {
+						document.body.style.filter = 'none';
+					}, 3000);
+					konamiCode = [];
+				}
+			});
+	
+			// Performance optimization - Intersection Observer for animations
+			const animationObserver = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+					}
+				});
+			}, { threshold: 0.1 });
+	
+			document.querySelectorAll('.animate-on-scroll').forEach(el => {
+				animationObserver.observe(el);
+			});
+	
+			// Console message for developers
+			console.log('%c👋 Hello, fellow developer!', 'color: #64ffda; font-size: 20px; font-weight: bold;');
+			console.log('%cInterested in the code? Check out my GitHub!', 'color: #8892b0; font-size: 14px;');
+			console.log('%cBuilt with ❤️ using Laravel, JavaScript, and lots of coffee ☕', 'color: #64ffda; font-size: 12px;');
+		</script>
+	
+		<!-- Particles.js container -->
+		<div id="particles-js"></div>
+	</body>
+	</html>
